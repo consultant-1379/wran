@@ -1,0 +1,33 @@
+<assembly>
+	<id>pkg</id>
+	<formats>
+		<format>dir</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<!-- Define your dependencySets here -->
+	<!--
+	<dependencySets>
+		<dependencySet>
+			<includes>
+				<include>Enter here</include>
+			</includes>
+			<unpack>false</unpack>
+			<outputDirectory>opt</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+	-->
+
+	<!-- Define your filesets here -->
+	<fileSets>
+		<fileSet>
+			<directory></directory>
+			<outputDirectory>/opt/ericsson</outputDirectory>
+			<includes>
+				<include>readme.txt</include>
+			</includes>
+			<lineEnding>unix</lineEnding>
+		</fileSet>
+	</fileSets>
+
+</assembly>

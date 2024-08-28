@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.ericsson.ci.simnet.prototype</groupId>
+    <artifactId>wran</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>ERICwran_CXP9030491-pkg</artifactId>
+  <packaging>${pkg.packaging}</packaging>
+  <name>${project.parent.artifactId} PKG module</name>
+  <description>Solaris Package for ${project.parent.artifactId}</description>
+
+  <!-- Dependencies of Solaris Package can be added in below section -->
+
+  <!--
+  <dependencies>
+    <dependency>
+      <groupId>Enter GroupId</groupId>
+      <artifactId>Enter ArtifactId</artifactId>
+      <version>Enter Version</version>
+    </dependency>
+  </dependencies>
+  -->
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+	<version>2.2-beta-2</version>
+	<executions>
+	  <execution>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>directory-inline</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <finalName>solaris/assembled</finalName>
+	  <ignoreDirFormatExtensions>true</ignoreDirFormatExtensions>
+	  <descriptors>
+	    <descriptor>src/main/assembly/pkg.xml</descriptor>
+	  </descriptors>
+	</configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+	<artifactId>solaris-maven-plugin</artifactId>
+	<!-- IMPORTANT: the extensions flag is required to activate the 'solaris' packaging -->
+	<extensions>true</extensions>
+	<configuration>
+	  <defaultUser>myuser</defaultUser>
+	  <defaultGroup>myuser</defaultGroup>
+	  <!--defaultFileMode>0755</defaultFileMode-->
+	  <generatedPrototype>
+	    <directoryCollection>
+	      <mode>0755</mode>
+	      <user>?</user>
+	      <group>?</group>
+	      <includes>
+	        <include>opt</include>
+              </includes>
+	    </directoryCollection>
+	    <directoryCollection>
+	      <mode>0755</mode>
+	      <user>?</user>
+	      <group>?</group>
+	      <includes>
+	        <include>$IPFHOME</include>
+              </includes>
+	    </directoryCollection>
+	  </generatedPrototype>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
